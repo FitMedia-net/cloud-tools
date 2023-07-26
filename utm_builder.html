@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTM Link Builder</title>
+</head>
+<body>
+    <h1>UTM Link Builder</h1>
+    <form id="utmForm">
+        <label for="baseurl">Base URL:</label><br>
+        <input type="text" id="baseurl" name="baseurl"><br>
+        <label for="medium">Medium:</label><br>
+        <input type="text" id="medium" name="medium"><br>
+        <label for="source">Source:</label><br>
+        <input type="text" id="source" name="source"><br>
+        <label for="campaign">Campaign:</label><br>
+        <input type="text" id="campaign" name="campaign"><br>
+        <label for="ref">Ref:</label><br>
+        <input type="text" id="ref" name="ref"><br>
+        <input type="button" value="Generate UTM Link" onclick="generateUTMLink()">
+    </form>
+    <p id="utmLink"></p>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+
+<script>
+    function generateUTMLink() {
+        let baseurl = document.getElementById('baseurl').value;
+        let medium = document.getElementById('medium').value;
+        let source = document.getElementById('source').value;
+        let campaign = document.getElementById('campaign').value;
+        let ref = document.getElementById('ref').value;
+        
+        let utmLink = baseurl + '?utm_medium=' + medium + '&utm_source=' + source + '&utm_campaign=' + campaign + '&ref=' + ref;
+        document.getElementById('utmLink').innerText = utmLink;
+    }
+
+    function copyToClipboard() {
+        let utmLink = document.getElementById('utmLink');
+        let textarea = document.createElement('textarea');
+        textarea.value = utmLink.innerText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+</script>
+
+</body>
+</html>
