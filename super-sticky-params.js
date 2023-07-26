@@ -1,5 +1,5 @@
 // Analytics Script
-defer data-domain="attribution.fitmedia.cloud" src="https://plausible.io/js/script.js"
+defer data-domain="cdn.fitmedia.cloud" src="https://plausible.io/js/script.js"
 
 // Catch and append all URL parameters to all hyperlinks that contain one of the below domains
 (function() {
