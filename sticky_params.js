@@ -11,7 +11,8 @@
   });
 
   function shouldDecorate(link) {
-    return link.hostname === currentDomain && !link.href.includes("#");
+    // Consider sub-domains by checking if the link's hostname ends with the current domain
+    return (link.hostname === currentDomain || link.hostname.endsWith('.' + currentDomain)) && !link.href.includes("#");
   }
 
   function decorateUrl(urlToDecorate) {
