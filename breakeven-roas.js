@@ -34,4 +34,26 @@ function isValidEmail(email) {
         // document.getElementById("field-target-roas").value = labelRoasValue
 
     }
+
+    function compareValues() {
+        var roas = document.getElementById('roas-value').value;
+        var targetRoas = document.getElementById('target-roas-value').value;
+      
+        if (parseInt(roas) > parseInt(targetRoas)) {
+          document.getElementById('roas-calc-results-positive').style.display = 'block';
+          document.getElementById('roas-calc-results-negative').style.display = 'none';
+          document.getElementById('roas-calc-results-equal').style.display = 'none';
+        } else if (parseInt(roas) < parseInt(targetRoas)) {
+          document.getElementById('roas-calc-results-positive').style.display = 'none';
+          document.getElementById('roas-calc-results-negative').style.display = 'block';
+          document.getElementById('roas-calc-results-equal').style.display = 'none';
+        } else {
+          document.getElementById('roas-calc-results-positive').style.display = 'none';
+          document.getElementById('roas-calc-results-negative').style.display = 'none';
+          document.getElementById('roas-calc-results-equal').style.display = 'block';
+        }
+      }
+
+      compareValues();
+
 })};
