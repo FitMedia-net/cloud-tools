@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     var params = getAllUrlParams();
-    var forms = document.getElementsByClassName('w-form');
+    var forms = document.getElementsByTagName("form");
     
     Array.prototype.slice.call(forms).forEach(function(form) {
         Object.keys(params).forEach(function(key) {
