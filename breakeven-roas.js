@@ -46,11 +46,12 @@ if (btnRoasSubmit) {
         roasForm.dispatchEvent(new Event("submit", { bubbles: true }));
 
         const roas = Math.round(
-            (parseInt(inputAvgSaleValue.value) /
-            (parseInt(inputAvgSaleValue.value) - parseInt(inputCogs.value)))*100)/100;
+            (parseInt(inputRevenue.value) / parseInt(inputAdSpend.value))*100)/100;
 
         const targetRoas = Math.round(
-            (parseInt(inputRevenue.value) / parseInt(inputAdSpend.value))*100)/100;
+            (parseInt(inputAvgSaleValue.value) /
+            (parseInt(inputAvgSaleValue.value) - parseInt(inputCogs.value)))*100)/100;
+            
 
         labelRoasValue.textContent = roas;
         labelTargetRoasValue.textContent = targetRoas;
