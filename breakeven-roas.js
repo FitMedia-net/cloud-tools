@@ -12,50 +12,49 @@ const labelTargetRoasValue = document.querySelector('[element="target-roas-value
 function isValidEmail(email) {
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})$/;
     return emailRegex.test(email);
-  }
-  if (!btnRoasSubmit) {
-  } else {
+}
+
+function compareValues(roas, targetRoas) {
+    document.getElementById('resultsTitle').innerHTML = 'The Results Are In...';
+
+    document.getElementById('roas-calc-results-positive').style.display = 'none';
+    document.getElementById('roas-calc-results-negative').style.display = 'none';
+    document.getElementById('roas-calc-results-equal').style.display = 'none';
+
+    // If ROAS exceeds breakeven.
+    if (roas > targetRoas) {
+        document.getElementById('roas-calc-results-positive').style.display = 'block';
+    }
+    // If ROAS does not exceed breakeven.
+    else if (roas < targetRoas) {
+        document.getElementById('roas-calc-results-negative').style.display = 'block';
+    }
+    // If ROAS equals breakeven.
+    else {
+        document.getElementById('roas-calc-results-equal').style.display = 'block';
+    }
+}
+
+if (btnRoasSubmit) {
     btnRoasSubmit.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (!isValidEmail(inputRoasMail.value) || !inputRoasCheckbox.checked) {
-        return;
-    } else {
         e.preventDefault();
+
+        if (!isValidEmail(inputRoasMail.value) || !inputRoasCheckbox.checked) {
+            return;
+        }
+
         roasForm.dispatchEvent(new Event("submit", { bubbles: true }));
 
-        labelRoasValue.textContent = Math.round(
-            parseInt(inputAvgSaleValue.value) /
-            (parseInt(inputAvgSaleValue.value) - (parseInt(inputCogs.value)))*100)/100
+        const roas = Math.round(
+            (parseInt(inputAvgSaleValue.value) /
+            (parseInt(inputAvgSaleValue.value) - parseInt(inputCogs.value)))*100)/100;
 
-        labelTargetRoasValue.textContent = Math.round(
-            parseInt(inputRevenue.value) / (parseInt(inputAdSpend.value))*100)/100
-            
-        // document.getElementById("field-current-roas").value = labelTargetRoasValue
-        // document.getElementById("field-target-roas").value = labelRoasValue
+        const targetRoas = Math.round(
+            (parseInt(inputRevenue.value) / parseInt(inputAdSpend.value))*100)/100;
 
-    }
+        labelRoasValue.textContent = roas;
+        labelTargetRoasValue.textContent = targetRoas;
 
-    function compareValues() {
-        var roas = document.getElementById('roas-value').value;
-        var targetRoas = document.getElementById('target-roas-value').value;
-
-        document.getElementById('resultsTitle').innerHTML = 'The Results Are In...'
-      
-        if (parseInt(roas) > parseInt(targetRoas)) {
-          document.getElementById('roas-calc-results-positive').style.display = 'block';
-          document.getElementById('roas-calc-results-negative').style.display = 'none';
-          document.getElementById('roas-calc-results-equal').style.display = 'none';
-        } else if (parseInt(roas) < parseInt(targetRoas)) {
-          document.getElementById('roas-calc-results-positive').style.display = 'none';
-          document.getElementById('roas-calc-results-negative').style.display = 'block';
-          document.getElementById('roas-calc-results-equal').style.display = 'none';
-        } else {
-          document.getElementById('roas-calc-results-positive').style.display = 'none';
-          document.getElementById('roas-calc-results-negative').style.display = 'none';
-          document.getElementById('roas-calc-results-equal').style.display = 'block';
-        }
-      }
-
-      compareValues();
-
-})};
+        compareValues(roas, targetRoas);
+    });
+}
