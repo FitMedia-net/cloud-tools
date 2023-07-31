@@ -38,6 +38,8 @@ function isValidEmail(email) {
     function compareValues() {
         var roas = document.getElementById('roas-value').value;
         var targetRoas = document.getElementById('target-roas-value').value;
+
+        document.getElementById('resultsTitle').innerHTML = 'The Results Are In...'
       
         if (parseInt(roas) > parseInt(targetRoas)) {
           document.getElementById('roas-calc-results-positive').style.display = 'block';
