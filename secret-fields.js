@@ -1,35 +1,21 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Function to get all URL parameters
-    function getAllUrlParams() {
-        var params = {};
-        var search = location.search.substring(1);
+    // Parse current URL
+    const urlParams = new URLSearchParams(window.location.search);
 
-        if (search) {
-            search.split('&').forEach(function(param) {
-                var item = param.split('=');
-                params[item[0]] = item[1] && decodeURIComponent(item[1].replace(/\+/g, ' '));
-            });
-        }
+    // Get form element
+    const form = document.getElementTagName("form");
 
-        return params;
-    };
+    // Iterate through each URL parameter
+    urlParams.forEach((value, key) => {
+        // Create new input element
+        const input = document.createElement("input");
 
-    // Create hidden fields for each URL parameter
-    var params = getAllUrlParams();
-    var forms = document.getElementsByTagName('form');
-    
-    Array.from(forms).forEach(function(form) {
-        Object.keys(params).forEach(function(key) {
-            var input = document.createElement("input");
+        // Set input type as hidden
+        input.type = "hidden";
 
-            input.setAttribute("type", "hidden");
-            input.setAttribute("name", key);
-            input.setAttribute("id", key + "-" + form.id); // adjusted id to avoid duplications
-            input.setAttribute("value", params[key]);
+        // Set input name and value
+        input.name = key;
+        input.value = value;
 
-            // append to form
-            form.appendChild(input);
-        });
+        // Append input to form
+        form.appendChild(input);
     });
-});
-
