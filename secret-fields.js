@@ -14,21 +14,41 @@ document.addEventListener('DOMContentLoaded', function() {
         return params;
     };
 
-    // Create hidden fields for each URL parameter
+    // Get all URL parameters
     var params = getAllUrlParams();
-    var forms = document.getElementsByTagName('form');
+
+    // Get formId from URL parameters
+    var formId = params['formId'];
     
-    Array.from(forms).forEach(function(form) {
-        Object.keys(params).forEach(function(key) {
-            var input = document.createElement("input");
+    // Make sure the formId is defined
+    if (!formId) {
+        console.error("No form ID provided in URL parameters");
+        return;
+    }
 
-            input.setAttribute("type", "hidden");
-            input.setAttribute("name", key);
-            input.setAttribute("id", key + "-" + form.id); // adjusted id to avoid duplications
-            input.setAttribute("value", params[key]);
+    // Find form by formId
+    var form = document.getElementById(formId);
 
-            // append to form
-            form.appendChild(input);
-        });
+    // Make sure the form exists
+    if (!form) {
+        console.error("No form found with id: " + formId);
+        return;
+    }
+
+    // Create hidden fields for each URL parameter and append to the form
+    Object.keys(params).forEach(function(key) {
+        // We don't want to add formId as a hidden field
+        if (key === 'formId') {
+            return;
+        }
+        var input = document.createElement("input");
+
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", key);
+        input.setAttribute("id", key + "-hidden"); // adjusted id to avoid duplications
+        input.setAttribute("value", params[key]);
+
+        // append to form
+        form.appendChild(input);
     });
 });
