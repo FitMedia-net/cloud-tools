@@ -1,19 +1,34 @@
-  document.addEventListener('DOMContentLoaded', function() {
-    // Get parameters from URL
-    let params = (new URL(document.location)).searchParams;
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to get all URL parameters
+    function getAllUrlParams() {
+        var params = {};
+        var search = location.search.substring(1);
 
-    // Get form to append hidden inputs
-    let form = document.getElementByTagName('form');
+        if (search) {
+            search.split('&').forEach(function(param) {
+                var item = param.split('=');
+                params[item[0]] = item[1] && decodeURIComponent(item[1].replace(/\+/g, ' '));
+            });
+        }
 
-    // Loop over each parameter
-    params.forEach((value, key) => {
-      // Create a new hidden field
-      let hiddenField = document.createElement('input');
-      hiddenField.type = 'hidden';
-      hiddenField.name = key;
-      hiddenField.value = value;
+        return params;
+    };
 
-      // Append hidden field to form
-      form.appendChild(hiddenField);
+    // Create hidden fields for each URL parameter
+    var params = getAllUrlParams();
+    var forms = document.getElementsByTagName('form');
+
+    Array.from(forms).forEach(function(form) {
+        Object.keys(params).forEach(function(key) {
+            var input = document.createElement("input");
+
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", key);
+            input.setAttribute("id", key + "-" + form.id); // adjusted id to avoid duplications
+            input.setAttribute("value", params[key]);
+
+            // append to form
+            form.appendChild(input);
+        });
     });
-  });
+});
