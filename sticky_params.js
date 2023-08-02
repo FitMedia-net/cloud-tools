@@ -1,3 +1,4 @@
+// Last updated on 2nd August 2023
 (function() {
   var currentDomain = window.location.hostname;
   var queryParams = ['utm_medium', 'utm_source', 'utm_campaign', 'fm_campaign', 'fm_adgroup', 'fm_ad', 'ref'];
