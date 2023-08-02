@@ -1,3 +1,4 @@
+// Last updated on 2nd August 2023
 document.addEventListener('DOMContentLoaded', function() {
     // Function to get all URL parameters
     function getAllUrlParams() {
