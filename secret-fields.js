@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Create hidden fields for each URL parameter
     var params = getAllUrlParams();
     var forms = document.getElementsByTagName('form');
+    var currentUrl = window.location.href;
+    var pageTitle = document.title;
 
     Array.from(forms).forEach(function(form) {
         Object.keys(params).forEach(function(key) {
@@ -30,5 +32,20 @@ document.addEventListener('DOMContentLoaded', function() {
             // append to form
             form.appendChild(input);
         });
+
+        // Create hidden fields for the current page URL and title
+        var urlInput = document.createElement("input");
+        urlInput.setAttribute("type", "hidden");
+        urlInput.setAttribute("name", "currentUrl");
+        urlInput.setAttribute("id", "currentUrl" + "-" + form.id); // adjusted id to avoid duplications
+        urlInput.setAttribute("value", currentUrl);
+        form.appendChild(urlInput);
+
+        var titleInput = document.createElement("input");
+        titleInput.setAttribute("type", "hidden");
+        titleInput.setAttribute("name", "pageTitle");
+        titleInput.setAttribute("id", "pageTitle" + "-" + form.id); // adjusted id to avoid duplications
+        titleInput.setAttribute("value", pageTitle);
+        form.appendChild(titleInput);
     });
 });
