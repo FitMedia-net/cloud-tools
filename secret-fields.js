@@ -1,21 +1,19 @@
-    // Parse current URL
-    const urlParams = new URLSearchParams(window.location.search);
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get parameters from URL
+    let params = (new URL(document.location)).searchParams;
 
-    // Get form element
-    const form = document.getElementTagName("form");
+    // Get form to append hidden inputs
+    let form = document.getElementByTagName('form');
 
-    // Iterate through each URL parameter
-    urlParams.forEach((value, key) => {
-        // Create new input element
-        const input = document.createElement("input");
+    // Loop over each parameter
+    params.forEach((value, key) => {
+      // Create a new hidden field
+      let hiddenField = document.createElement('input');
+      hiddenField.type = 'hidden';
+      hiddenField.name = key;
+      hiddenField.value = value;
 
-        // Set input type as hidden
-        input.type = "hidden";
-
-        // Set input name and value
-        input.name = key;
-        input.value = value;
-
-        // Append input to form
-        form.appendChild(input);
+      // Append hidden field to form
+      form.appendChild(hiddenField);
     });
+  });
