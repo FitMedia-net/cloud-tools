@@ -1,7 +1,7 @@
 // Last updated on 2nd August 2023
 (function() {
   var currentDomain = window.location.hostname;
-  var queryParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fm_campaign', 'fm_adgroup', 'fm_ad', 'ref'];
+  var queryParams = ['fm_campaign', 'fm_adgroup', 'fm_ad', fm_keyword', 'ref'];
 
   var links = document.querySelectorAll('a');
 
