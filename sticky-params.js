@@ -6,7 +6,7 @@
     console.log("Current URL:", currentUrl.href);
 
     // List of parameters to search for
-    const searchParamsList = ['fm_campaign', 'fm_adgroup', 'fm_ad', 'fm_keyword', 'ref'];
+    const searchParamsList = ['fm_source', 'fm_campaign', 'fm_adgroup', 'fm_ad', 'fm_keyword', 'ref'];
 
     // Collect the values of the listed parameters if they exist
     const existingParams = {};
