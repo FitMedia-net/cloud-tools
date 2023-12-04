@@ -24,14 +24,17 @@ function compareValues(roas, targetRoas) {
     // If ROAS exceeds breakeven.
     if (roas > targetRoas) {
         document.getElementById('roas-calc-results-positive').style.display = 'block';
+        document.getElementById('apply-section').style.display = 'block';
     }
     // If ROAS does not exceed breakeven.
     else if (roas < targetRoas) {
         document.getElementById('roas-calc-results-negative').style.display = 'block';
+        document.getElementById('apply-section').style.display = 'block';
     }
     // If ROAS equals breakeven.
     else {
         document.getElementById('roas-calc-results-equal').style.display = 'block';
+        document.getElementById('apply-section').style.display = 'block';
     }
 }
 
