@@ -20,6 +20,7 @@ function compareValues(roas, targetRoas) {
     document.getElementById('roas-calc-results-positive').style.display = 'none';
     document.getElementById('roas-calc-results-negative').style.display = 'none';
     document.getElementById('roas-calc-results-equal').style.display = 'none';
+    document.getElementById('apply-section').style.display = 'none';
 
     // If ROAS exceeds breakeven.
     if (roas > targetRoas) {
