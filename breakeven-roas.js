@@ -63,9 +63,3 @@ if (btnRoasSubmit) {
         compareValues(roas, targetRoas);
     });
 }
-
-function scroll {
-    const element = document.getElementById("roas-calc-results");
-    element.scrollIntoView();
-    scroll();
-}
