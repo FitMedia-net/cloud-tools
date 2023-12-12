@@ -13,6 +13,7 @@
     var id = getQueryParam('id'); // Get Tracking ID from URL parameter
     if (!id) {
         console.error('Tracking ID not found in URL');
+        console.log('Script URL:', url);
         return;
     }
 
