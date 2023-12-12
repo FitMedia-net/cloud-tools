@@ -10,9 +10,9 @@
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
 
-    var id = getQueryParam('id'); // Get GTM ID from URL parameter
-    if (!gtmId) {
-        console.error('GTM ID not found in URL');
+    var id = getQueryParam('id'); // Get Tracking ID from URL parameter
+    if (!id) {
+        console.error('Tracking ID not found in URL');
         return;
     }
 
