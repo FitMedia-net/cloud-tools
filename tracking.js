@@ -1,5 +1,5 @@
 (function(w, d, s, l) {
-    // Function to get ID from the query string
+    // Function to get GTM ID from the query string
     function getQueryParam(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, '\\$&');
@@ -10,9 +10,9 @@
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
 
-    var id = getQueryParam('id'); // Get Tracking ID from URL parameter
-    if (!id) {
-        console.error('ID not found in URL');
+    var gtmId = getQueryParam('gtmId'); // Get GTM ID from URL parameter
+    if (!gtmId) {
+        console.error('GTM ID not found in URL');
         return;
     }
 
@@ -27,13 +27,13 @@
         dl = l != 'dataLayer' ? '&l=' + l : '';
     
     j.async = true;
-    j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-' + id + dl;
+    j.src = 'https://tracking.fitmedia.cloud/zpdfwzls.js'; // Custom script source
     f.parentNode.insertBefore(j, f);
 
     w.addEventListener('load', function() {
         var iframe = d.createElement('iframe');
         iframe.style.display = 'none';
-        iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-' + id;
+        iframe.src = 'https://tracking.fitmedia.cloud/ns.html?id=' + id; // Custom iframe source
         d.body.insertBefore(iframe, d.body.firstChild);
     });
 })(window, document, 'script', 'dataLayer');
