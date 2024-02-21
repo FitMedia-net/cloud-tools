@@ -1,4 +1,4 @@
-// FitMedia Pixel Script
+// FitMedia Pixel Script - Last Updated 21st February 2024
 (function() {
     // Function to get the GTM ID from the query string of the script's own URL
     function getQueryParam(name) {
